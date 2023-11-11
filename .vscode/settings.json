@@ -1,0 +1,15 @@
+{
+    "files.associations": {
+        "nrf_temp.h": "c",
+        "button-hal.h": "c",
+        "uartdrv.h": "c",
+        "netstack.h": "c",
+        "nrfx.h": "c",
+        "em_gpio.h": "c",
+        "em_device.h": "c",
+        "sl_i2cspm.h": "c",
+        "buffer": "cpp",
+        "ostream": "cpp",
+        "sl_bmp280.h": "c"
+    }
+}
