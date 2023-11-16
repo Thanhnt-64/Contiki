@@ -44,6 +44,7 @@ sl_status_t sl_device_init_clocks(void)
 #if defined(_CMU_LFECLKSEL_MASK)
   CMU_ClockSelectSet(cmuClock_LFE, cmuSelect_LFXO);
 #endif
+
   return SL_STATUS_OK;
 }
 

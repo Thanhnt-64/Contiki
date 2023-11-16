@@ -49,7 +49,6 @@
 #include "sys/log.h"
 #include "gpio-hal.h"
 #include "mgm24-conf.h"
-#include "leds.h"
 #include "em_device.h"
 #include "em_chip.h"
 #include "em_cmu.h"

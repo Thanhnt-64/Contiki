@@ -1,6 +1,0 @@
-#ifndef SL_DEVICE_ADC_CONFIG_H_
-#define SL_DEVICE_ADC_CONFIG_H_
-
-#define SL_DEVICE_INIT_ADC_ENABLE 1
-
-#endif

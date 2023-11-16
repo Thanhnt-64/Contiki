@@ -44,7 +44,6 @@ GSDK_SRC_PATHS += $(GSDK_ROOT)/hardware/board/src
 GSDK_INC_PATHS += $(GSDK_ROOT)/hardware/board/inc
 
 ## emlib
-GSDK_C_SRCS += $(GSDK_ROOT)/platform/emlib/src/em_chip.c
 GSDK_C_SRCS += $(GSDK_ROOT)/platform/emlib/src/em_cmu.c
 GSDK_C_SRCS += $(GSDK_ROOT)/platform/emlib/src/em_core.c
 GSDK_C_SRCS += $(GSDK_ROOT)/platform/emlib/src/em_emu.c
@@ -83,7 +82,6 @@ GSDK_C_SRCS += $(GSDK_ROOT)/platform/emdrv/uartdrv/src/uartdrv.c
 GSDK_SRC_PATHS += $(GSDK_ROOT)/platform/emdrv/uartdrv/src
 GSDK_INC_PATHS += $(GSDK_ROOT)/platform/emdrv/uartdrv/inc
 
-
 ### i2cspm
 GSDK_C_SRCS += $(GSDK_ROOT)/platform/driver/i2cspm/src/sl_i2cspm.c
 GSDK_INC_PATHS += $(GSDK_ROOT)/platform/driver/i2cspm/inc
@@ -93,6 +91,7 @@ GSDK_SRC_PATHS += $(GSDK_ROOT)/platform/driver/i2cspm/src
 GSDK_C_SRCS += $(GSDK_ROOT)/platform/service/udelay/src/sl_udelay.c
 GSDK_INC_PATHS += $(GSDK_ROOT)/platform/service/udelay/inc
 GSDK_SRC_PATHS += $(GSDK_ROOT)/platform/service/udelay/src
+
 
 ## peripheral
 GSDK_C_SRCS += $(GSDK_ROOT)/platform/peripheral/src/peripheral_keyscan.c
