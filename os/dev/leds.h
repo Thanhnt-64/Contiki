@@ -186,7 +186,7 @@ void leds_arch_set(leds_mask_t leds);
 /**
  * \brief The number of LEDs present on a device
  */
-#define LEDS_COUNT 0
+#define LEDS_COUNT 
 #endif
 /*---------------------------------------------------------------------------*/
 /**

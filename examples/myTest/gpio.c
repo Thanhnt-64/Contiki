@@ -38,34 +38,59 @@
  */
 
 #include "contiki.h"
-#include "net/routing/rpl-lite/rpl-dag-root.h"
-#include <stdio.h> /* For printf() */
-#include "net/routing/rpl-lite/rpl.h"
-#include "net/ipv6/uip-ds6-route.h"
-#include "net/ipv6/uip-sr.h"
-#include "net/ipv6/uip.h"
+// #include "net/routing/rpl-lite/rpl-dag-root.h"
+// #include <stdio.h> /* For printf() */
+// #include "net/routing/rpl-lite/rpl.h"
+// #include "net/ipv6/uip-ds6-route.h"
+// #include "net/ipv6/uip-sr.h"
+// #include "net/ipv6/uip.h"
 
 /* Log configuration */
 #include "sys/log.h"
+#include "gpio-hal.h"
+#include "mgm24-conf.h"
+#include "leds.h"
+#include "em_device.h"
+#include "em_chip.h"
+#include "em_cmu.h"
+#include "em_gpio.h"
+#include "em_emu.h"
+
+#define LED_PORT    gpioPortD
+#define LED_PIN     1
 /*---------------------------------------------------------------------------*/
-PROCESS(hello_world_process, "Hello world process");
-AUTOSTART_PROCESSES(&hello_world_process);
+PROCESS(gpio_process, "gpio process");
+AUTOSTART_PROCESSES(&gpio_process);
 /*---------------------------------------------------------------------------*/
-PROCESS_THREAD(hello_world_process, ev, data)
+
+void Delay(uint32_t ms) {
+    for (volatile uint32_t i = 0; i < ms * 7000; i++) {
+        // Delay loop
+    }
+}
+
+PROCESS_THREAD(gpio_process, ev, data)
 {
-  static struct etimer timer;
+  //static struct etimer timer;
 
   PROCESS_BEGIN();
-
+  CHIP_Init();
   /* Setup a periodic timer that expires after 10 seconds. */
-  etimer_set(&timer, CLOCK_SECOND * 10);
-
+  //etimer_set(&timer, CLOCK_SECOND*10);
+  CMU_ClockEnable(cmuClock_GPIO, true);
+  GPIO_PinModeSet(LED_PORT, LED_PIN, gpioModePushPull, 0);
   while(1) {
-    rpl_dag_root_print_links("Thanh");
+    
+    GPIO_PinOutSet(LED_PORT, LED_PIN);
+    Delay(500);
 
-    /* Wait for the periodic timer to expire and then restart the timer. */
-    PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&timer));
-    etimer_reset(&timer);
+        // Turn off the LED
+    printf("Hello world from Thanh\n");
+    //PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&timer));
+
+    //etimer_reset(&timer);
+    GPIO_PinOutClear(LED_PORT, LED_PIN);
+    Delay(500);
   }
 
   PROCESS_END();

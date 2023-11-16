@@ -1,4 +1,4 @@
-CONTIKI_PROJECT = client
+CONTIKI_PROJECT = gpio
 all: $(CONTIKI_PROJECT)
 
 CONTIKI=../..

@@ -42,8 +42,8 @@ typedef enum{
 }ledCurrent;
 
 
-  int i2c_write (uint8_t i2c_addr, uint8_t register_addr, char* buffer, uint8_t Nbyte );
-  int i2c_read (uint8_t i2c_addr, uint8_t register_addr, char* buffer, uint8_t Nbyte );
+  int i2c_read (uint8_t i2c_addr, uint8_t register_addr, uint8_t* buffer, uint8_t Nbyte );
+  int i2c_read (uint8_t i2c_addr, uint8_t register_addr, uint8_t* buffer, uint8_t Nbyte );
     //
    
   void setLEDs(pulseWidth pw, ledCurrent red, ledCurrent ir);
@@ -56,5 +56,4 @@ typedef enum{
   uint8_t getRevID(void);
   uint8_t getPartID(void);
   void begin(pulseWidth pw, ledCurrent ir, sampleRate sr);
-  void printRegisters(void);
 #endif
