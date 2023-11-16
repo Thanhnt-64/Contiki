@@ -58,41 +58,25 @@
 
 #define LED_PORT    gpioPortD
 #define LED_PIN     1
-/*---------------------------------------------------------------------------*/
-PROCESS(gpio_process, "gpio process");
-AUTOSTART_PROCESSES(&gpio_process);
-/*---------------------------------------------------------------------------*/
 
-void Delay(uint32_t ms) {
-    for (volatile uint32_t i = 0; i < ms * 7000; i++) {
-        // Delay loop
-    }
+PROCESS(ledToggle, "ledToggle");
+PROCESS_THREAD(ledToglle, ev, data){
+
+	static struct etimer timerRed;
+
+	PROCESS_BEGIN();
+
+	printf("Timers set!\r\n ");
+
+	etimer_set(&timerRed, 1000);
+
+	while(1) {
+		PROCESS_WAIT_EVENT();
+		if(etimer_expired(&timerRed)) {
+			printf("Timer expired for RED...\r\n");
+			leds_toggle(LEDS_RED);
+			etimer_reset(&timerRed);
+		}
+	}
+	PROCESS_END();
 }
-
-PROCESS_THREAD(gpio_process, ev, data)
-{
-  //static struct etimer timer;
-
-  PROCESS_BEGIN();
-  CHIP_Init();
-  /* Setup a periodic timer that expires after 10 seconds. */
-  //etimer_set(&timer, CLOCK_SECOND*10);
-  CMU_ClockEnable(cmuClock_GPIO, true);
-  GPIO_PinModeSet(LED_PORT, LED_PIN, gpioModePushPull, 0);
-  while(1) {
-    
-    GPIO_PinOutSet(LED_PORT, LED_PIN);
-    Delay(500);
-
-        // Turn off the LED
-    printf("Hello world from Thanh\n");
-    //PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&timer));
-
-    //etimer_reset(&timer);
-    GPIO_PinOutClear(LED_PORT, LED_PIN);
-    Delay(500);
-  }
-
-  PROCESS_END();
-}
-/*---------------------------------------------------------------------------*/
