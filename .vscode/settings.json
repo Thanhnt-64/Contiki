@@ -13,6 +13,8 @@
         "sl_bmp280.h": "c",
         "sl_udelay.h": "c",
         "em_chip.h": "c",
-        "em_cmu.h": "c"
+        "em_cmu.h": "c",
+        "em_core.h": "c",
+        "gpio-hal.h": "c"
     }
 }

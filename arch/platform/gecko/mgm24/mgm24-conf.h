@@ -12,9 +12,9 @@
 #define GECKO_BUTTON2_PIN     7
 #define GECKO_BUTTON2_PORT    gpioPortD
 /*---------------------------------------------------------------------------*/
-#define GECKO_LED1_PIN        4
+#define GECKO_LED1_PIN        1
 #define GECKO_LED1_PORT       gpioPortD
-#define GECKO_LED2_PIN        5
+#define GECKO_LED2_PIN        2
 #define GECKO_LED2_PORT       gpioPortD
 /*---------------------------------------------------------------------------*/
 #define LEDS_CONF_COUNT     2

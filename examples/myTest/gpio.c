@@ -54,42 +54,36 @@
 #include "em_cmu.h"
 #include "em_gpio.h"
 #include "em_emu.h"
+#include "leds.h"
 
-#define LED_PORT    gpioPortD
-#define LED_PIN     1
+#define LED_PORT    gpioPortC
+#define LED_PIN     3
+#define LED_PORT1    gpioPortC
+#define LED_PIN1     2
 /*---------------------------------------------------------------------------*/
 PROCESS(gpio_process, "gpio process");
 AUTOSTART_PROCESSES(&gpio_process);
 /*---------------------------------------------------------------------------*/
 
 void Delay(uint32_t ms) {
-    for (volatile uint32_t i = 0; i < ms * 7000; i++) {
+    for (volatile uint32_t i = 0; i < ms * 7000; i++){
         // Delay loop
     }
 }
 
 PROCESS_THREAD(gpio_process, ev, data)
 {
-  //static struct etimer timer;
+  static struct etimer timer;
 
   PROCESS_BEGIN();
-  CHIP_Init();
-  /* Setup a periodic timer that expires after 10 seconds. */
-  //etimer_set(&timer, CLOCK_SECOND*10);
-  CMU_ClockEnable(cmuClock_GPIO, true);
-  GPIO_PinModeSet(LED_PORT, LED_PIN, gpioModePushPull, 0);
+  etimer_set(&timer, CLOCK_SECOND * 10);
+  gpio_hal_init();
+  leds_init();
   while(1) {
-    
-    GPIO_PinOutSet(LED_PORT, LED_PIN);
-    Delay(500);
-
-        // Turn off the LED
-    printf("Hello world from Thanh\n");
-    //PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&timer));
-
-    //etimer_reset(&timer);
-    GPIO_PinOutClear(LED_PORT, LED_PIN);
-    Delay(500);
+    leds_single_on(1);
+    gpio_hal_arch_pin_set_output(LED_PORT, LED_PIN);
+    PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&timer));
+    etimer_reset(&timer);
   }
 
   PROCESS_END();
